@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/groups/{gid}")
+@RequestMapping("/api/groups/{gid}")
 public class RankingController {
 
     private final RankingService rankingService;

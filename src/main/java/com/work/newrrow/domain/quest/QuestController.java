@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/groups")
 public class QuestController {
 
     private static final Logger logger = LoggerFactory.getLogger(QuestController.class);
@@ -23,7 +24,7 @@ public class QuestController {
     private final QuestService questService;
     private final FastAiClient aiClient;
 
-    @PostMapping("/groups/{gid}/quests")
+    @PostMapping("/{gid}/quests")
     public ResponseEntity<ApiResponse<QuestDto>> create(@RequestHeader("X-User-Id") Long userId,
                                                         @PathVariable String gid,
                                                         @RequestBody CreateQuestReq req){
@@ -31,13 +32,13 @@ public class QuestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok(created));
     }
 
-    @GetMapping("/groups/{gid}/quests")
+    @GetMapping("/{gid}/quests")
     public ApiResponse<List<QuestDto>> list(@PathVariable String gid){
         return ApiResponse.ok(questService.listByGroup(gid));
     }
 
     // ★ FastAPI 연동
-    @PostMapping("/groups/{gid}/quests/ai-generate")
+    @PostMapping("/{gid}/quests/ai-generate")
     public ResponseEntity<ApiResponse<List<AiQuestDraftRes>>> aiGenerate(@PathVariable String gid,
                                                                          @RequestBody AiGenerateReq req){
         try {
@@ -52,14 +53,14 @@ public class QuestController {
         }
     }
 
-    @PutMapping("/quests/{qid}")
+    @PutMapping("/{qid}")
     public ApiResponse<QuestDto> update(@RequestHeader("X-User-Id") Long userId,
                                         @PathVariable String qid,
                                         @RequestBody UpdateQuestReq req){
         return ApiResponse.ok(questService.update(qid, req, userId));
     }
 
-    @PostMapping("/quests/{qid}/toggle")
+    @PostMapping("/{qid}/toggle")
     public ApiResponse<ToggleRes> toggle(@RequestHeader(value = "X-User-Id", required = false) Long userIdFromHeader,
                                          @PathVariable String qid,
                                          @RequestBody(required = false) ToggleReq req){
@@ -71,7 +72,7 @@ public class QuestController {
         return ApiResponse.ok(questService.toggle(qid, userId));
     }
 
-    @DeleteMapping("/quests/{qid}")
+    @DeleteMapping("/{qid}")
     public ResponseEntity<Void> delete(@RequestHeader("X-User-Id") Long userId,
                                        @PathVariable String qid){
         questService.delete(qid, userId);

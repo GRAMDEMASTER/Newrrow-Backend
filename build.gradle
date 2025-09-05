@@ -38,11 +38,13 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.32'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
 
+
     // (선택) 구성 프로퍼티 메타데이터
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testAnnotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') { useJUnitPlatform() }

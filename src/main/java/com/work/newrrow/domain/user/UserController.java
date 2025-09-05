@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -29,11 +29,12 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<UserProfileDto>> create(@RequestBody CreateUserReq req){
+    @PostMapping("/user")  // 인증 없이 새 사용자 생성
+    public ResponseEntity<ApiResponse<UserProfileDto>> create(@RequestBody CreateUserReq req) {
         var created = userService.create(req);
         return ResponseEntity.status(201).body(ApiResponse.ok(created));
     }
+
 
 
     @PutMapping("/{id}")
