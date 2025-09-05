@@ -1,0 +1,85 @@
+# ---- OS / 일반 ----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ---- 로그 / 임시 ----
+logs/
+*.log
+*.tmp
+*.bak
+
+# ---- 환경 변수 / 비밀 ----
+.env
+.env.*
+*.local
+# Spring 설정 중 로컬/비밀 값은 커밋 금지
+application.yml
+application.yaml
+application.properties
+# 필요시 패턴 확장
+application-*.local.yml
+application-*.local.yaml
+application-*.local.properties
+
+# ---- Gradle ----
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+# gradlew 스크립트는 꼭 버전관리 (실행권한 주의)
+# (여긴 ignore가 아니라 안내용 주석)
+
+# 모듈별 build 디렉토리 (중복 안전)
+**/build/
+
+# ---- IntelliJ IDEA ----
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+**/out/
+
+# ---- Eclipse / STS ----
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+**/bin/
+
+# ---- NetBeans ----
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ---- VS Code ----
+.vscode/
+
+# ---- Java / JVM 산출물 ----
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# ---- 테스트 산출물 ----
+**/test-output/
+**/surefire-reports/
+**/jacoco/
+**/reports/
+
+# ---- Docker / Compose (선택) ----
+docker-data/
+*.pid
+
+# ---- Maven 사용 병행 시 대비 (선택) ----
+target/
